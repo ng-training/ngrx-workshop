@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { map, filter, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
-import { EmployeeService } from '../services/employee.service';
-import { Employee } from '../models/employee.model';
+import { getEmployee } from './selectors';
+import { fetchEmployee } from './actions';
 
 @Component({
   selector: 'app-employee-details',
@@ -13,15 +13,14 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./employee-details.component.css'],
 })
 export class EmployeeDetailsComponent {
-  employee$: Observable<Employee>;
-  constructor(
-    readonly employeeService: EmployeeService,
-    readonly route: ActivatedRoute
-  ) {
-    this.employee$ = this.route.paramMap.pipe(
-      filter(params => params.has('id')),
-      map(params => params.get('id')),
-      switchMap(id => this.employeeService.getEmployee(id))
-    );
+  employee$ = this.store.select(getEmployee);
+
+  constructor(readonly store: Store<{}>, readonly route: ActivatedRoute) {
+    this.route.paramMap
+      .pipe(
+        filter(params => params.has('id')),
+        map(params => params.get('id'))
+      )
+      .subscribe(id => this.store.dispatch(fetchEmployee({ id })));
   }
 }
