@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { MatSnackBar } from '@angular/material';
 
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { EmployeeService } from '../services/employee.service';
@@ -25,8 +26,20 @@ export class EmployeesEffects {
     )
   );
 
+  showMessage$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fetchEmployeesSuccess),
+        tap(() => this.snackBar.open('Loaded....', null, { duration: 1000 }))
+      ),
+    {
+      dispatch: false,
+    }
+  );
+
   constructor(
     private actions$: Actions,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private snackBar: MatSnackBar
   ) {}
 }
