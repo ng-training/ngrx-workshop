@@ -15,6 +15,7 @@ import { EmployeeListModule } from './employee-list/employee-list.module';
 import { EmployeeDetailsModule } from './employee-details/employee-details.module';
 
 import { userReducer } from './login/reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { userReducer } from './login/reducer';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
