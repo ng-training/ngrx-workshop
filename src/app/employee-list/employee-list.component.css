@@ -1,0 +1,8 @@
+table {
+  width: 80%;
+  margin: 0 auto;
+}
+
+tr[mat-row]:hover {
+  background-color: lightgrey;
+}
