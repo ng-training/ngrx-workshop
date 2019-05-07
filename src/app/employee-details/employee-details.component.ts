@@ -16,11 +16,6 @@ export class EmployeeDetailsComponent {
   employee$ = this.store.select(getEmployee);
 
   constructor(readonly store: Store<{}>, readonly route: ActivatedRoute) {
-    this.route.paramMap
-      .pipe(
-        filter(params => params.has('id')),
-        map(params => params.get('id'))
-      )
-      .subscribe(id => this.store.dispatch(fetchEmployee({ id })));
+    this.store.dispatch(fetchEmployee());
   }
 }

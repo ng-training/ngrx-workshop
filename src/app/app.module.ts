@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './router/app-routing.module';
@@ -15,7 +17,6 @@ import { EmployeeListModule } from './employee-list/employee-list.module';
 import { EmployeeDetailsModule } from './employee-details/employee-details.module';
 
 import { userReducer } from './login/reducer';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,13 +29,13 @@ import { EffectsModule } from '@ngrx/effects';
     EmployeeListModule,
     EmployeeDetailsModule,
     StoreModule.forRoot(
-      { user: userReducer },
+      { user: userReducer, router: routerReducer },
       {
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
           strictStateSerializability: true,
-          strictActionSerializability: true,
+          // strictActionSerializability: true,
         },
       }
     ),

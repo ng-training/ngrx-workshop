@@ -2,10 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { Employee } from '../models/employee.model';
 
-export const fetchEmployee = createAction(
-  '[Employee Details] Fetch',
-  props<{ id: string }>()
-);
+export const fetchEmployee = createAction('[Employee Details] Fetch');
 
 export const fetchEmployeeSuccess = createAction(
   '[Employee Details] Fetch Success',
