@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from 'src/environments/environment';
 
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -17,6 +17,9 @@ import { EmployeeListModule } from './employee-list/employee-list.module';
 import { EmployeeDetailsModule } from './employee-details/employee-details.module';
 
 import { userReducer } from './login/reducer';
+import { logger } from './logger.reducer';
+
+const metaReducers: MetaReducer<any>[] = [logger];
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +34,7 @@ import { userReducer } from './login/reducer';
     StoreModule.forRoot(
       { user: userReducer, router: routerReducer },
       {
+        metaReducers,
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
