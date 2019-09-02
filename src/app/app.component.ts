@@ -20,6 +20,5 @@ export class AppComponent {
 
   logout() {
     this.store.dispatch(userActions.logout());
-    this.router.navigateByUrl('login');
   }
 }
