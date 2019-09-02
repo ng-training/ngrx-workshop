@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { getUserName } from './login/selectors';
+
+import * as userActions from './login/actions';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +16,10 @@ export class AppComponent {
 
   user$ = this.store.select(getUserName);
 
-  constructor(readonly store: Store<{}>) {}
+  constructor(readonly store: Store<{}>, readonly router: Router) {}
+
+  logout() {
+    this.store.dispatch(userActions.logout());
+    this.router.navigateByUrl('login');
+  }
 }
