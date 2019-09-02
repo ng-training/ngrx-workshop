@@ -18,8 +18,9 @@ import { EmployeeDetailsModule } from './employee-details/employee-details.modul
 
 import { userReducer } from './login/reducer';
 import { logger } from './logger.reducer';
+import { reset } from './reset.reducer';
 
-const metaReducers: MetaReducer<any>[] = [logger];
+const metaReducers: MetaReducer<any>[] = [logger, reset];
 
 @NgModule({
   declarations: [AppComponent],
