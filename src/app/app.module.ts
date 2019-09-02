@@ -35,7 +35,7 @@ import { userReducer } from './login/reducer';
           strictStateImmutability: true,
           strictActionImmutability: true,
           strictStateSerializability: true,
-          // strictActionSerializability: true,
+          strictActionSerializability: true,
         },
       }
     ),

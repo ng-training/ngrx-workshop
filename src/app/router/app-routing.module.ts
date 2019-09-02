@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   StoreRouterConnectingModule,
   NavigationActionTiming,
+  RouterState,
 } from '@ngrx/router-store';
 
 import { LoginComponent } from '../login/login.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
+      routerState: RouterState.Minimal,
       serializer: CustomSerializer,
       navigationActionTiming: NavigationActionTiming.PreActivation,
     }),
