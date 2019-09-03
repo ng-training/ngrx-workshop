@@ -41,4 +41,11 @@ describe('AppComponent', () => {
       'Welcome to ngrx-workshop'
     );
   });
+
+  it('should show the user name', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('foo');
+  });
 });
